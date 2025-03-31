@@ -30,9 +30,8 @@ function shuffleCards() {
 
 function showCard() {
     const card = cards[currentCard];
-    const imgElement = document.getElementById('front-image');
-    const finnishText = document.getElementById('finnish-text');
-    const englishText = document.getElementById('english-text');
+    const imgElement = document.getElementById('card-image');
+    const textElement = document.getElementById('card-text');
     
     // Load image
     imgElement.src = card.image;
@@ -40,13 +39,22 @@ function showCard() {
         imgElement.style.display = 'none'; 
     };
     
-    finnishText.textContent = card.finnish;
-    englishText.textContent = card.english;
+    textElement.textContent = card.finnish;
     document.getElementById('card').classList.remove('flipped');
     isFront = true;
 }
 
 document.getElementById('flip-btn').addEventListener('click', () => {
-    document.getElementById('card').classList.toggle('flipped');
+    const card = cards[currentCard];
+    const textElement = document.getElementById('card-text');
+    const cardElement = document.getElementById('card');
+    
+    textElement.textContent = isFront ? card.english : card.finnish;
+    cardElement.classList.toggle('flipped');
     isFront = !isFront;
+});
+
+document.getElementById('next-btn').addEventListener('click', () => {
+    currentCard = (currentCard + 1) % cards.length;
+    showCard();
 });
