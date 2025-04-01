@@ -134,7 +134,7 @@ pankki,bank
 lasku,bill
 osto,purchase
 hinta,price
-alennussale,discount
+alennus,discount
 kassa,cash register
 kortti,card
 maksu,payment
